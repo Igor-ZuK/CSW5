@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ToursHandler extends ToursTable implements IHandler {
-    Logger logger = LogManager.getLogger(OrdersHandler.class);
+    Logger logger = LogManager.getLogger(ToursHandler.class);
 
     @Override
     public boolean addObj(Object obj) {

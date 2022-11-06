@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class UsersHandler extends UsersTable implements IHandler {
-    Logger logger = LogManager.getLogger(OrdersHandler.class);
+    Logger logger = LogManager.getLogger(UsersHandler.class);
 
     @Override
     public boolean addObj(Object obj) {
