@@ -1,6 +1,10 @@
 package utils;
 
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,7 +12,8 @@ import java.util.ArrayList;
 
 
 public class Connector implements Closeable {
-
+    Logger logger = LogManager.getLogger(Connector.class);
+    
     private Socket socket;
 
     private BufferedReader bufferedReader;
@@ -101,7 +106,7 @@ public class Connector implements Closeable {
             objectInputStream.close();
             socket.close();
         } catch (IOException e) {
-            new LoggedException("Class Connect ", e);
+            logger.log(Level.ERROR, e.getMessage());
         }
     }
 

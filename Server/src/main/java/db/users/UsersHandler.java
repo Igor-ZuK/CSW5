@@ -1,7 +1,6 @@
 package db.users;
 
 import db.IHandler;
-import db.orders.OrdersHandler;
 import models.User;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -37,8 +36,8 @@ public class UsersHandler extends UsersTable implements IHandler {
             prSt.setString(4, client.getMail());
             prSt.setString(5, client.getMobileNumber());
             prSt.setString(6, client.getLogin());
-            prSt.setString(7, client.getPassword());
-            prSt.setInt(8, client.getFlag());
+            prSt.setString(7, client.getPasswordHash());
+            prSt.setBoolean(8, client.getIsAdmin());
             prSt.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -77,8 +76,8 @@ public class UsersHandler extends UsersTable implements IHandler {
             preparedStatement.setString(4, client.getMail());
             preparedStatement.setString(5, client.getMobileNumber());
             preparedStatement.setString(6, client.getLogin());
-            preparedStatement.setString(7, client.getPassword());
-            preparedStatement.setInt(8, client.getFlag());
+            preparedStatement.setString(7, client.getPasswordHash());
+            preparedStatement.setBoolean(8, client.getIsAdmin());
             preparedStatement.setInt(9, client.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
@@ -104,8 +103,8 @@ public class UsersHandler extends UsersTable implements IHandler {
                 client.setMail(resSet.getString(5));
                 client.setMobileNumber(resSet.getString(6));
                 client.setLogin(resSet.getString(7));
-                client.setPassword(resSet.getString(8));
-                client.setFlag(resSet.getInt(9));
+                client.setPasswordHash(resSet.getString(8));
+                client.setIsAdmin(resSet.getBoolean(9));
                 arrayList.add(client);
             }
         } catch (SQLException | ClassNotFoundException e) {

@@ -5,7 +5,7 @@ import controllers.CoreController;
 
 
 public class Main {
-    public static int port = Integer.parseInt(System.getenv("SERVER_PORT"));
+    public static int port = 8888;
 
     public static void main(String[] args) {
         try {

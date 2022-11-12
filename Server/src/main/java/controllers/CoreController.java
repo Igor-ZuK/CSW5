@@ -34,34 +34,28 @@ public class CoreController {
                 switch (req) {
                     case "signIn" -> {
                         String login = connector.readLine();
-                        String pass = connector.readLine();
-                        ArrayList<User> clients = (ArrayList<User>) usersHandler.getList().clone();
+                        String passwordHash = connector.readLine();
 
+                        ArrayList<User> clients = (ArrayList<User>) usersHandler.getList().clone();
                         for (User client : clients) {
                             System.out.println(client.toString());
-                            if (pass.equals(client.getPassword()) && login.equals(client.getLogin())) {
+                            if (passwordHash.equals(client.getPasswordHash()) && login.equals(client.getLogin())) {
                                 connector.writeLine("true");
 
-                                if (client.getFlag() == 1) {
-
-                                    connector.writeLine("adminUI");
+                                if (client.getIsAdmin()) {
+                                    connector.writeLine("admin");
                                     IController iController = ControllerFactory.getType("admin");
                                     iController.start();
-                                    return;
 
-                                } else if (client.getFlag() == 2) {
+                                } else {
                                     System.out.println(client);
-                                    connector.writeLine("clientUI");
+                                    connector.writeLine("client");
                                     connector.writeObj(client);
 
                                     IController iController = ControllerFactory.getType("client");
                                     iController.start();
-                                    return;
-
-                                } else {
-                                    logger.log(Level.ERROR, "do not flags please view database and class User");
-                                    break;
                                 }
+                                return;
                             }
                         }
                         connector.writeLine("false");

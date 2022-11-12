@@ -1,12 +1,12 @@
 package controllers;
 
+import models.Order;
 import db.IHandler;
 import db.orders.OrdersHandler;
 import db.tickets.TicketsHandler;
 import db.tours.ToursHandler;
 import db.users.UsersHandler;
 import helpers.IController;
-import models.Order;
 import models.Tour;
 import models.User;
 import org.apache.logging.log4j.Level;
@@ -51,13 +51,19 @@ public class ClientController implements IController {
     @Override
     public void deleteDate(String msg) throws IOException, ClassNotFoundException {
         if ("deleteOrder".equals(msg)) {
+            boolean result = false;
             String id = connect.readLine();
-            Delete delete = new Delete();
-            if (delete.deleteOrder(Integer.parseInt(id), ordersHandler.getList())) {
-                connect.writeLine("true");
-            } else {
-                connect.writeLine("false");
+            int orderId = Integer.parseInt(id);
+
+            ArrayList<Order> orders = (ArrayList<Order>) ordersHandler.getList().clone();
+            for (Order o : orders) {
+                if (orderId == o.getId()) {
+                    result = ordersHandler.deleteObj(o);
+                    break;
+                }
             }
+
+            connect.writeLine(Boolean.toString(result));
         } else {
             logger.log(Level.ERROR,"user server do not response deleteOrder case default");
         }

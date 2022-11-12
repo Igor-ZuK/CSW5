@@ -1,8 +1,9 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Tour {
+public class Tour implements Serializable {
     private int id;
 
     private String countryName;

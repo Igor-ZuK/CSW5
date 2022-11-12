@@ -1,8 +1,9 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Ticket {
+public class Ticket implements Serializable {
     private int id;
 
     private String code;

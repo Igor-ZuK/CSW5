@@ -20,7 +20,7 @@ public class User implements Serializable {
 
     private String passwordHash;
 
-    private int isAdmin;
+    private boolean isAdmin = false;
 
 
     public User() {
@@ -28,7 +28,7 @@ public class User implements Serializable {
     }
 
     public User(String FIO, String code, String passportId, String mail,
-                  String mobileNumber, String login, String passwordHash, int isAdmin) {
+                  String mobileNumber, String login, String passwordHash, boolean isAdmin) {
         this.FIO = FIO;
         this.code = code;
         this.passportId = passportId;
@@ -95,19 +95,19 @@ public class User implements Serializable {
         this.login = login;
     }
 
-    public String getPassword() {
+    public String getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPassword(String passwordHash) {
+    public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
 
-    public int getFlag() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setFlag(int isAdmin) {
+    public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
