@@ -1,5 +1,6 @@
 package com.example.client.controllers;
 
+import com.example.client.ClientApplication;
 import com.example.client.utils.InputDialog;
 import com.example.client.utils.animations.Shake;
 import javafx.event.ActionEvent;
@@ -11,14 +12,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import models.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.Connector;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class CoreController {
 
@@ -39,15 +43,17 @@ public class CoreController {
         connector = new Connector("localhost", 8888);
     }
 
-    public void openNewScene(String window) {
+    public void openNewScene(String window, String title) {
         try {
             loginSignUpButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(window));
+            loader.setLocation(ClientApplication.class.getResource(window));
             loader.load();
             Parent root = loader.getRoot();
             Stage stage = new Stage();
+            stage.setTitle("Igor&Co. Travel | " + title);
             stage.setScene(new Scene(root));
+            stage.getIcons().add(new Image(Objects.requireNonNull(ClientApplication.class.getResourceAsStream("images/map-icon.png"))));
             stage.showAndWait();
         } catch (IOException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -65,47 +71,48 @@ public class CoreController {
         loginField.setTooltip(loginToolTip);
 
         authSignInButton.setOnAction(actionEvent -> {
-                String login = loginField.getText().trim();
-                String pass = passwordField.getText().trim();
+            String login = loginField.getText().trim();
+            String pass = passwordField.getText().trim();
 
-                if (login.isEmpty()) {
-                    Shake loginShake = new Shake(loginField);
-                    loginShake.shake();
-                } else if (pass.isEmpty()) {
-                    Shake passShake = new Shake(passwordField);
-                    passShake.shake();
-                } else {
-                    try {
-                        connector.writeLine("signIn");
-                        connector.writeLine(login);
-                        connector.writeLine(pass);
+            if (login.isEmpty()) {
+                Shake loginShake = new Shake(loginField);
+                loginShake.shake();
+            } else if (pass.isEmpty()) {
+                Shake passShake = new Shake(passwordField);
+                passShake.shake();
+            } else {
+                String passHash = DigestUtils.sha256Hex(pass);
+                try {
+                    connector.writeLine("signIn");
+                    connector.writeLine(login);
+                    connector.writeLine(passHash);
 
-                        String isStableConnectedStr = connector.readLine();
-                        String isAdminOrClientStr = connector.readLine();
+                    String isStableConnectedStr = connector.readLine();
+                    String isAdminOrClientStr = connector.readLine();
 
-                        if (isStableConnectedStr.equals("true")) {
-                            if (isAdminOrClientStr.equals("admin")) {
-                                logger.log(Level.INFO, "Админ вошёл в учётную запись");
-                                openNewScene("views/admin-view.fxml");
-                            } else if (isAdminOrClientStr.equals("client")) {
-                                client = (User) connector.readObj();
+                    if (isStableConnectedStr.equals("true")) {
+                        if (isAdminOrClientStr.equals("admin")) {
+                            logger.log(Level.INFO, "Админ вошёл в учётную запись");
+                            openNewScene("views/admin-view.fxml", "Панель администратора");
+                        } else if (isAdminOrClientStr.equals("client")) {
+                            client = (User) connector.readObj();
 
-                                logger.log(Level.INFO, String.format("Пользователь \"%s\" прошёл авторизацию", client.getLogin()));
-                                openNewScene("views/client-view.fxml");
-                            } else {
-                                loginField.setText("");
-                                passwordField.setText("");
+                            logger.log(Level.INFO, String.format("Пользователь \"%s\" прошёл авторизацию", client.getLogin()));
+                            openNewScene("views/client-view.fxml", "Панель пользователя");
+                        } else {
+                            loginField.setText("");
+                            passwordField.setText("");
 
-                                logger.log(Level.WARN, String.format("Пользователь \"%s\" не найден", login));
-                            }
+                            logger.log(Level.WARN, String.format("Пользователь \"%s\" не найден", login));
                         }
-                    } catch (IOException | ClassNotFoundException e) {
-                        logger.log(Level.ERROR, e.getMessage());
-
-                        loginField.setText("");
-                        passwordField.setText("");
                     }
+                } catch (IOException | ClassNotFoundException e) {
+                    logger.log(Level.ERROR, e.getMessage());
+
+                    loginField.setText("");
+                    passwordField.setText("");
                 }
+            }
         });
     }
 }

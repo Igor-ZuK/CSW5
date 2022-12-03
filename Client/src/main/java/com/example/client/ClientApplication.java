@@ -16,7 +16,7 @@ public class ClientApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Igor&Co. Travel | Главное окно");
         stage.setScene(scene);
-        stage.getIcons().add(new Image(Objects.requireNonNull(ClientApplication.class.getResourceAsStream("images/map.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(ClientApplication.class.getResourceAsStream("images/map-icon.png"))));
         stage.show();
     }
 

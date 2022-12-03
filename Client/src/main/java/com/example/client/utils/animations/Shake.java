@@ -12,10 +12,7 @@ public class Shake {
         translateTransition.setFromX(0f);
         translateTransition.setByX(10f);
         translateTransition.setCycleCount(3);
-        translateTransition.setOnFinished(t -> {
-            node.setLayoutX(node.getTranslateX());
-            node.setTranslateX(0);
-        });
+        translateTransition.setOnFinished(t -> node.setTranslateX(0));
     }
 
     public void shake() {

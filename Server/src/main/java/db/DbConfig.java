@@ -10,7 +10,7 @@ public class DbConfig {
     private final String dbName;
 
     public DbConfig() {
-        Dotenv dotenv = Dotenv.configure().directory("Server\\src\\main\\resources").load();;
+        Dotenv dotenv = Dotenv.configure().directory("Server\\src\\main\\resources").load();
         dbHost = dotenv.get("DB_HOST");
         dbPort = dotenv.get("DB_PORT", "3306");
         dbUser = dotenv.get("DB_USER");

@@ -8,7 +8,7 @@ public class User implements Serializable {
 
     private String FIO;
 
-    private String code;
+    private String clientCode;
 
     private String passportId;
 
@@ -27,10 +27,10 @@ public class User implements Serializable {
         
     }
 
-    public User(String FIO, String code, String passportId, String mail,
+    public User(String FIO, String clientCode, String passportId, String mail,
                   String mobileNumber, String login, String passwordHash, boolean isAdmin) {
         this.FIO = FIO;
-        this.code = code;
+        this.clientCode = clientCode;
         this.passportId = passportId;
         this.mail = mail;
         this.mobileNumber = mobileNumber;
@@ -56,11 +56,11 @@ public class User implements Serializable {
     }
 
     public String getClientCode() {
-        return code;
+        return clientCode;
     }
 
-    public void setClientCode(String code) {
-        this.code = code;
+    public void setClientCode(String clientCode) {
+        this.clientCode = clientCode;
     }
 
     public String getPassportId() {
@@ -118,7 +118,7 @@ public class User implements Serializable {
         User client = (User) o;
         return isAdmin == client.isAdmin
                 && Objects.equals(FIO, client.FIO)
-                && Objects.equals(code, client.code)
+                && Objects.equals(clientCode, client.clientCode)
                 && Objects.equals(passportId, client.passportId)
                 && Objects.equals(mail, client.mail)
                 && Objects.equals(mobileNumber, client.mobileNumber)
@@ -128,7 +128,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(FIO, code, passportId, mail, mobileNumber, login, passwordHash, isAdmin);
+        return Objects.hash(FIO, clientCode, passportId, mail, mobileNumber, login, passwordHash, isAdmin);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", FIO='" + FIO + '\'' +
-                ", code='" + code + '\'' +
+                ", clientCode='" + clientCode + '\'' +
                 ", passportId='" + passportId + '\'' +
                 ", mail='" + mail + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +

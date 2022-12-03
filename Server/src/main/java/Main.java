@@ -13,9 +13,7 @@ public class Main {
 
             while (true) {
                 CoreController CoreController = new CoreController(serverSocket);
-                new Thread(() -> {
-                    CoreController.work(serverSocket);
-                }).start();
+                new Thread(CoreController::work).start();
             }
         } catch (IOException e) {
             e.printStackTrace();

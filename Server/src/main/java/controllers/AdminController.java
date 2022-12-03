@@ -82,19 +82,17 @@ public class AdminController implements IController {
     }
 
     @Override
-    public void deleteDate(String msg) throws IOException, ClassNotFoundException {
+    public void deleteData(String msg) throws IOException, ClassNotFoundException {
         switch (msg) {
             case "deleteUser" -> {
                 boolean result = false;
                 String login = connect.readLine();
-                String pass = connect.readLine();
                 String userCode = connect.readLine();
 
-                String passHash = DigestUtils.sha256Hex(pass);
                 ArrayList<User> users = (ArrayList<User>) usersHandler.getList().clone();
 
                 for (User user : users) {
-                    if (login.equals(user.getLogin()) && passHash.equals(user.getPasswordHash()) && userCode.equals(user.getClientCode())) {
+                    if (login.equals(user.getLogin()) && userCode.equals(user.getClientCode())) {
                         result = usersHandler.deleteObj(user);
                         break;
                     }
@@ -166,7 +164,7 @@ public class AdminController implements IController {
                         this.saveDate(connect.readLine());
                     }
                     case "delete" -> {
-                        this.deleteDate(connect.readLine());
+                        this.deleteData(connect.readLine());
                     }
                     case "search" -> {
                         String req = connect.readLine();
@@ -228,13 +226,11 @@ public class AdminController implements IController {
             case "searchUser" -> {
                 String fio = connect.readLine();
                 String login = connect.readLine();
-                String pass = connect.readLine();
-                String passHash = DigestUtils.sha256Hex(pass);
 
                 int counter = 0;
                 ArrayList<User> users = (ArrayList<User>) usersHandler.getList().clone();
                 for (User user : users) {
-                    if (fio.equals(user.getFIO()) && login.equals(user.getLogin()) && passHash.equals(user.getPasswordHash())) {
+                    if (fio.equals(user.getFIO()) && login.equals(user.getLogin())) {
                         ++counter;
                         connect.writeLine("true");
                         connect.writeObj(user);

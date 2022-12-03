@@ -60,10 +60,11 @@ public class SignUpController {
             Shake passportIdShake = new Shake(passportIdField);
             passportIdShake.shake();
         } else {
+            System.out.println("Try to create user");
             try {
                 User user = new User();
                 int randomCode = (100 + (int) (Math.random() * ((1000 - 100) + 1)));
-                String clientCode = "#" + String.valueOf(randomCode);
+                String clientCode = "#" + randomCode;
                 String passwordHash = DigestUtils.sha256Hex(password);
 
                 user.setFIO(fio);

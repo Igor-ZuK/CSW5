@@ -55,7 +55,7 @@ public class InputDialog {
         }
         stage.setTitle("Igor&Co. Travel | Новое окно");
         stage.setScene(new Scene(root, h, w));
-        stage.getIcons().add(new Image(Objects.requireNonNull(ClientApplication.class.getResourceAsStream("images/map.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(ClientApplication.class.getResourceAsStream("images/map-icon.png"))));
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
         stage.show();

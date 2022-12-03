@@ -49,7 +49,7 @@ public class ClientController implements IController {
     }
 
     @Override
-    public void deleteDate(String msg) throws IOException, ClassNotFoundException {
+    public void deleteData(String msg) throws IOException, ClassNotFoundException {
         if ("deleteOrder".equals(msg)) {
             boolean result = false;
             String id = connect.readLine();
@@ -115,7 +115,7 @@ public class ClientController implements IController {
                         this.saveDate(connect.readLine());
                     }
                     case "delete" -> {
-                        this.deleteDate(connect.readLine());
+                        this.deleteData(connect.readLine());
                     }
                     case "edit" -> {
                         this.editDate(connect.readLine());

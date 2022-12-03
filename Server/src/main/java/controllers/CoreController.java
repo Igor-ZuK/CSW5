@@ -23,11 +23,10 @@ public class CoreController {
         countClient++;
     }
 
-    public void work(ServerSocket serverSocket) {
+    public void work() {
         try {
             IHandler usersHandler = new UsersHandler();
-            connector = new Connector(serverSocket);
-            System.out.println("User connector --> " + ++countClient);
+            System.out.println("User connector --> " + countClient);
 
             while (true) {
                 String req = connector.readLine();
@@ -68,9 +67,7 @@ public class CoreController {
                             connector.writeLine("false");
                         }
                     }
-                    default -> {
-                        logger.log(Level.ERROR, "class ServerController switch(connector.readLine()) error");
-                    }
+                    default -> logger.log(Level.ERROR, "class ServerController switch(connector.readLine()) error");
                 }
             }
         } catch (Exception e) {

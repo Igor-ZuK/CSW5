@@ -69,7 +69,6 @@ public class UsersHandler extends UsersTable implements IHandler {
                     " WHERE " + UsersTable.ID_FIELD + "=?";
 
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
-
             preparedStatement.setString(1, client.getFIO());
             preparedStatement.setString(2, client.getClientCode());
             preparedStatement.setString(3, client.getPassportId());
