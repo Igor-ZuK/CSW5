@@ -97,7 +97,7 @@ public class ClientController {
 
         profileBtn.setOnAction(ActionEvent -> {
             errorReserveTourLabel.setText("");
-            activeMenuLabel.setText("Профил");
+            activeMenuLabel.setText("Профиль");
             mainTabPane.getSelectionModel().select(userProfileTab);
             userFioField.setText(profile.getFIO());
             userCodeField.setText(profile.getClientCode());

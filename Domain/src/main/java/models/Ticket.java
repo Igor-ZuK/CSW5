@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Ticket implements Serializable {
     private int id;
 
-    private String code;
+    private String ticketCode;
 
     private String userCode;
 
@@ -21,9 +21,9 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
-    public Ticket(String code, String userCode, String transportType,
+    public Ticket(String ticketCode, String userCode, String transportType,
                   String departurePoint, String arrivalPoint, String departureDate) {
-        this.code = code;
+        this.ticketCode = ticketCode;
         this.userCode = userCode;
         this.transportType = transportType;
         this.departurePoint = departurePoint;
@@ -40,11 +40,11 @@ public class Ticket implements Serializable {
     }
 
     public String getTicketCode() {
-        return code;
+        return ticketCode;
     }
 
-    public void setTicketCode(String code) {
-        this.code = code;
+    public void setTicketCode(String ticketCode) {
+        this.ticketCode = ticketCode;
     }
 
     public String getUserCode() {
@@ -79,11 +79,11 @@ public class Ticket implements Serializable {
         this.arrivalPoint = arrivalPoint;
     }
 
-    public String getDepartureData() {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureData(String departureDate) {
+    public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
     }
 
@@ -92,7 +92,7 @@ public class Ticket implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return Objects.equals(code, ticket.code)
+        return Objects.equals(ticketCode, ticket.ticketCode)
                 && Objects.equals(userCode, ticket.userCode)
                 && Objects.equals(transportType, ticket.transportType)
                 && Objects.equals(departurePoint, ticket.departurePoint)
@@ -102,14 +102,14 @@ public class Ticket implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, userCode, transportType, departurePoint, arrivalPoint, departureDate);
+        return Objects.hash(ticketCode, userCode, transportType, departurePoint, arrivalPoint, departureDate);
     }
 
     @Override
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
+                ", ticketCode='" + ticketCode + '\'' +
                 ", userCode='" + userCode + '\'' +
                 ", transportType='" + transportType + '\'' +
                 ", departurePoint='" + departurePoint + '\'' +

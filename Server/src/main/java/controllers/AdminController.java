@@ -205,11 +205,10 @@ public class AdminController implements IController {
                     ticket.setUserCode(o.getClientCode());
                     for (Tour t : tourArrayList) {
                         if (o.getTourCode().equals(t.getTourCode())) {
-                            ticket.setDepartureData(t.getTourDate());
+                            ticket.setDepartureDate(t.getTourDate());
                             ticket.setArrivalPoint(t.getCountryName() + "-" + t.getCityName());
                             flagAddTicket = ticketsHandler.addObj(ticket);
-                            boolean ff = ordersHandler.deleteObj(o);
-                            System.out.println("i am delete order flag -> " + ff);
+                            ordersHandler.deleteObj(o);
                             return flagAddTicket;
                         }
                     }

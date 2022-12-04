@@ -426,9 +426,10 @@ public class AdminController {
                 connector.writeLine("viewTicket");
                 ArrayList<Ticket> ticketAdminArrayList = (ArrayList<Ticket>) connector.readObjList().clone();
                 ObservableList<Ticket> observableList = FXCollections.observableArrayList(ticketAdminArrayList);
+
                 ticketTableView.setItems(observableList);
                 ticketTableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("id"));
-                ticketTableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("code"));
+                ticketTableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("ticketCode"));
                 ticketTableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("userCode"));
                 ticketTableView.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("transportType"));
                 ticketTableView.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("departurePoint"));

@@ -37,8 +37,8 @@ public class CoreController {
 
                         ArrayList<User> clients = (ArrayList<User>) usersHandler.getList().clone();
                         for (User client : clients) {
-                            System.out.println(client.toString());
                             if (passwordHash.equals(client.getPasswordHash()) && login.equals(client.getLogin())) {
+                                System.out.println(client);
                                 connector.writeLine("true");
 
                                 if (client.getIsAdmin()) {
@@ -54,6 +54,8 @@ public class CoreController {
                                     IController iController = ControllerFactory.getType("client");
                                     iController.start();
                                 }
+
+                                countClient--;
                                 return;
                             }
                         }

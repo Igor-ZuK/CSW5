@@ -47,7 +47,7 @@
                                 </font>
                             </Button>
                             <Line endX="-100.0" endY="15.000007629394531" layoutX="434.0" layoutY="19.0" startX="-100.0" startY="-6.400001525878906" />
-                            <TextField fx:id="deleteIdTourField" alignment="CENTER" layoutX="485.0" layoutY="7.0" prefHeight="26.0" prefWidth="158.0" promptText="Введите id тура">
+                            <TextField fx:id="deleteIdTourField" alignment="CENTER" layoutX="485.0" layoutY="7.0" prefHeight="26.0" prefWidth="158.0" promptText="Введите ID тура">
                                 <font>
                                     <Font size="14.0" />
                                 </font>
@@ -217,16 +217,16 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="393.0" prefWidth="974.0">
                             <TableView fx:id="ticketTableView" layoutY="50.0" prefHeight="565.0" prefWidth="851.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="50.0">
                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="ID" />
-                                    <TableColumn prefWidth="74.4000244140625" text="Код тура" />
-                                    <TableColumn prefWidth="92.0" text="Код клиента" />
-                                    <TableColumn prefWidth="126.40003967285156" text="Тип транспорта" />
-                                    <TableColumn prefWidth="150.39996337890625" text="Вылет" />
-                                    <TableColumn prefWidth="168.0001220703125" text="Прилёт" />
-                                    <TableColumn prefWidth="161.599853515625" text="Дата вылета" />
+                                    <TableColumn prefWidth="50.0" text="ID" />
+                                    <TableColumn prefWidth="113.0" text="Код тура" />
+                                    <TableColumn prefWidth="119.0" text="Код клиента" />
+                                    <TableColumn prefWidth="157.0" text="Tранспорт" />
+                                    <TableColumn prefWidth="142.0" text="Вылет" />
+                                    <TableColumn prefWidth="173.0" text="Прилёт" />
+                                    <TableColumn prefWidth="218.0" text="Дата вылета" />
                                 </columns>
                             </TableView>
-                            <Button fx:id="ticketsViewBtn" alignment="CENTER" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="212.0" style="-fx-background-color: #7449BA;" text="Список ваших билетов" textFill="WHITE">
+                            <Button fx:id="ticketsViewBtn" alignment="CENTER" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="212.0" style="-fx-background-color: #7449BA;" text="Список билетов" textFill="WHITE">
                                 <font>
                                     <Font size="14.0" />
                                 </font>
@@ -248,7 +248,7 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <TableView fx:id="ordersTableView" layoutX="6.0" layoutY="3.0" prefHeight="640.0" prefWidth="498.0">
                     <columns>
-                        <TableColumn prefWidth="107.20000916719437" text="id" />
+                        <TableColumn prefWidth="107.20000916719437" text="ID" />
                         <TableColumn prefWidth="203.0" text="Код клиента" />
                         <TableColumn prefWidth="186.0" text="Код тура" />
                     </columns>
@@ -284,7 +284,7 @@
                 <Line endX="304.39996337890625" layoutX="609.0" layoutY="313.0" startX="-100.0" />
                 <TableView fx:id="tabViewOrdersSearch" layoutX="504.0" layoutY="325.0" prefHeight="287.0" prefWidth="419.0" AnchorPane.bottomAnchor="35.0" AnchorPane.topAnchor="325.0">
                     <columns>
-                        <TableColumn prefWidth="49.999969482421875" text="id" />
+                        <TableColumn prefWidth="49.999969482421875" text="ID" />
                         <TableColumn prefWidth="167.0" text="Код клиента" />
                         <TableColumn prefWidth="200.19997558593752" text="Код тура" />
                     </columns>
@@ -294,7 +294,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="ordersViewBtn" layoutX="571.0" layoutY="36.0" mnemonicParsing="false" onAction="#getOrderView" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #7449BA;" text="Список ваших заказов" textFill="WHITE">
+                <Button fx:id="ordersViewBtn" layoutX="571.0" layoutY="36.0" mnemonicParsing="false" onAction="#getOrderView" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #7449BA;" text="Список заказов" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>

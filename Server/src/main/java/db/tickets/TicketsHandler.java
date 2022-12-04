@@ -34,7 +34,7 @@ public class TicketsHandler extends TicketsTable implements IHandler {
             prSt.setString(3, ticket.getTransportType());
             prSt.setString(4, ticket.getDeparturePoint());
             prSt.setString(5, ticket.getArrivalPoint());
-            prSt.setString(6, ticket.getDepartureData());
+            prSt.setString(6, ticket.getDepartureDate());
             prSt.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -77,7 +77,7 @@ public class TicketsHandler extends TicketsTable implements IHandler {
                 t.setTransportType(resSet.getString(4));
                 t.setDeparturePoint(resSet.getString(5));
                 t.setArrivalPoint(resSet.getString(6));
-                t.setDepartureData(resSet.getString(7));
+                t.setDepartureDate(resSet.getString(7));
                 arrayList.add(t);
             }
         } catch (SQLException | ClassNotFoundException e) {
