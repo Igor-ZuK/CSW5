@@ -174,7 +174,7 @@ public class ClientController {
                     ticketTableView.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("transportType"));
                     ticketTableView.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("departurePoint"));
                     ticketTableView.getColumns().get(5).setCellValueFactory(new PropertyValueFactory("arrivalPoint"));
-                    ticketTableView.getColumns().get(6).setCellValueFactory(new PropertyValueFactory("departureData"));
+                    ticketTableView.getColumns().get(6).setCellValueFactory(new PropertyValueFactory("departureDate"));
                 }
             } catch (IOException | ClassNotFoundException e) {
                 logger.log(Level.ERROR, e.getMessage());

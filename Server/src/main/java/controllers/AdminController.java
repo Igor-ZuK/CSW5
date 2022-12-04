@@ -178,7 +178,7 @@ public class AdminController implements IController {
                         return;
                     }
                     default -> {
-                        logger.log(Level.ERROR, "поличичли что-то не то  то user controller ");
+                        logger.log(Level.ERROR, "не найден router в AdminController");
                     }
                 }
             }

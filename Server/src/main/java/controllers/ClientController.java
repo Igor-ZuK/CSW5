@@ -125,7 +125,7 @@ public class ClientController implements IController {
                         return;
                     }
                     default -> {
-                        logger.log(Level.ERROR,"поличичли что-то не то user controller ");
+                        logger.log(Level.ERROR,"не найден router в ClientController");
                     }
                 }
             }
